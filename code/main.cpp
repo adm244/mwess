@@ -317,6 +317,197 @@ OTHER DEALINGS IN THE SOFTWARE.
     ???
   END
 //--------#REGN--------
+
+//--------NPC_--------
+  NPC_ block: // NPC Information
+    ???
+    (many) NPCO block
+    (many) NPCS block
+    ???
+  END
+  
+  NPCO block: // NPC Inventory Item Information
+    HEADER:
+      (4 bytes) Block Signature (0x4E50434F = "NPCO")
+      (4 bytes) Data Size
+    DATA:
+      (4 bytes) Count
+      (32 bytes) Item Name
+  END
+  
+  NPCS block: // NPC Spell Information
+    HEADER:
+      (4 bytes) Block Signature (0x4E504353 = "NPCS")
+      (4 bytes) Data Size
+    DATA:
+      (32 bytes) Spell Name
+  END
+//--------#NPC_--------
+
+//--------REFR--------
+  REFR block: // Player Reference Data
+    HEADER:
+      (4 bytes) Block Signature (0x52454652 = "REFR")
+      (4 bytes) Data Size
+      (4 bytes) ???
+      (4 bytes) Flags
+    DATA:
+      (single) FRMR block ???
+      (single) NAME block ???
+      (single) ACTN block ???
+      (single) STPR block ???
+      (single) ACDT block
+      (single) ASCS block ???
+      (single) ASCL block ???
+      (single) FGTN block ???
+      (single) WNAM block
+      (single) XNAM block ???
+      (single) YNAM block ???
+      (single) CHRD block
+      (single) ND3D block
+      (single) DATA block
+  END
+  
+  ACDT block: // Actor Data
+    HEADER:
+      (4 bytes) Block Signature (0x41434454 = "ACDT")
+      (4 bytes) Data Size
+    DATA:
+      (4 bytes) ???
+      (4 bytes) ???
+      (4 bytes) ???
+      (4 bytes) Flags
+        0x0020 - ??? (if on player, introduces a "constant effects on hit" bug)
+        0x4000 - ??? (freezes character)
+        0x8000 - Werewolf
+      (4 bytes) ???
+      (4 bytes) ???
+      (4 bytes) ???
+      (4 bytes) ???
+      (4 bytes) ???
+      (4 bytes) ???
+      
+      (4 bytes) Player Current Health (float)
+      (4 bytes) Player Maximum Health (float)
+      (4 bytes) Player Current Fatigue (float)
+      (4 bytes) Player Maximum Fatigue (float)
+      (4 bytes) Player Current Magicka (float)
+      (4 bytes) Player Maximum Magicka (float)
+      (4 bytes) ??? (float)
+      (4 bytes) ??? (float)
+      (4 bytes) Player Current Encumbrance (float)
+      (4 bytes) Player Maximum Encumbrance (float)
+      
+      (4 bytes) Strength (float)
+      (4 bytes) Strength Base (float)
+      (4 bytes) Intelligence (float)
+      (4 bytes) Intelligence Base (float)
+      (4 bytes) Willpower (float)
+      (4 bytes) Willpower Base (float)
+      (4 bytes) Agility (float)
+      (4 bytes) Agility Base (float)
+      (4 bytes) Speed (float)
+      (4 bytes) Speed Base (float)
+      (4 bytes) Endurance (float)
+      (4 bytes) Endurance Base (float)
+      (4 bytes) Personality (float)
+      (4 bytes) Personality Base (float)
+      (4 bytes) Luck (float)
+      (4 bytes) Luck Base (float)
+      
+      (120 bytes) ???
+  END
+  
+  WNAM block: // Equiped Weapon
+    HEADER:
+      (4 bytes) Block Signature (0x574E414D = "WNAM")
+      (4 bytes) Data Size
+    DATA:
+      (data size bytes) Weapon ID (zero terminated)
+  END
+  
+  CHRD block: // Character Skills Values
+    HEADER:
+      (4 bytes) Block Signature (0x43485244 = "CHRD")
+      (4 bytes) Data Size
+    DATA:
+      (4 bytes) Block
+      (4 bytes) Block Base
+      (4 bytes) Armorer
+      (4 bytes) Armorer Base
+      (4 bytes) Medium Armor
+      (4 bytes) Medium Armor Base
+      (4 bytes) Heavy Armor
+      (4 bytes) Heavy Armor Base
+      (4 bytes) Blunt Weapon
+      (4 bytes) Blunt Weapon Base
+      (4 bytes) Long Blade
+      (4 bytes) Long Blade Base
+      (4 bytes) Axe
+      (4 bytes) Axe Base
+      (4 bytes) Spear
+      (4 bytes) Spear Base
+      (4 bytes) Athletics
+      (4 bytes) Athletics Base
+      (4 bytes) Enchant
+      (4 bytes) Enchant Base
+      (4 bytes) Destruction
+      (4 bytes) Destruction Base
+      (4 bytes) Alteration
+      (4 bytes) Alteration Base
+      (4 bytes) Illusion
+      (4 bytes) Illusion Base
+      (4 bytes) Conjuration
+      (4 bytes) Conjuration Base
+      (4 bytes) Mysticism
+      (4 bytes) Mysticism Base
+      (4 bytes) Restoration
+      (4 bytes) Restoration Base
+      (4 bytes) Alchemy
+      (4 bytes) Alchemy Base
+      (4 bytes) Unarmored
+      (4 bytes) Unarmored Base
+      (4 bytes) Security
+      (4 bytes) Security Base
+      (4 bytes) Sneak
+      (4 bytes) Sneak Base
+      (4 bytes) Acrobatics
+      (4 bytes) Acrobatics Base
+      (4 bytes) Light Armor
+      (4 bytes) Light Armor Base
+      (4 bytes) Short Blade
+      (4 bytes) Short Blade Base
+      (4 bytes) Marskman
+      (4 bytes) Marskman Base
+      (4 bytes) Mercantile
+      (4 bytes) Mercantile Base
+      (4 bytes) Speechcraft
+      (4 bytes) Speechcraft Base
+      (4 bytes) Hand-to-hand
+      (4 bytes) Hand-to-hand Base
+  END
+  
+  ND3D block: // ???
+    HEADER:
+      (4 bytes) Block Signature (0x4E443344 = "ND3D")
+      (4 bytes) Data Size
+    DATA:
+      ???
+  END
+  
+  DATA block: // Position Information
+    HEADER:
+      (4 bytes) Block Signature (0x44415441 = "DATA")
+      (4 bytes) Data Size
+    DATA:
+      (4 bytes) Position X (float)
+      (4 bytes) Position Y (float)
+      (4 bytes) Position Z (float)
+      (4 bytes) Rotation X (float)
+      (4 bytes) Rotation Y (float)
+      (4 bytes) Rotation Z (float)
+  END
+//--------#REFR--------
 */
 
 internal int main(int argc, char *argv[])
